@@ -1,0 +1,1089 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>Báo Giá Hệ Thống Giám Sát Xe | GPS Khánh Hòa</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --brand-primary: #047857;
+            --brand-dark: #064e3b;
+            --brand-light: #ecfdf5;
+            --brand-accent: #059669;
+            --slate-900: #0f172a;
+            --slate-800: #1e293b;
+            --slate-700: #334155;
+            --slate-600: #475569;
+            --slate-200: #e2e8f0;
+            --slate-100: #f1f5f9;
+            --slate-50: #f8fafc;
+            --white: #ffffff;
+            --border: #e2e8f0;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: #f1f5f9;
+            color: var(--slate-800);
+            line-height: 1.45;
+            padding-bottom: 40px;
+        }
+
+        .app-bar {
+            background: #ffffff;
+            border-bottom: 1px solid var(--border);
+            padding: 10px 16px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+
+        .app-bar-inner {
+            max-width: 920px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .app-bar-brand {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.88rem;
+            font-weight: 700;
+            color: var(--brand-dark);
+        }
+
+        .app-bar-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            padding: 7px 14px;
+            border-radius: 8px;
+            font-size: 0.82rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.15s ease;
+            border: none;
+            white-space: nowrap;
+        }
+
+        .btn-nvkd { background: #fef3c7; color: #92400e; }
+        .btn-nvkd:hover { background: #fde68a; }
+
+        .btn-print { background: #f8fafc; color: var(--slate-700); border: 1px solid var(--border); }
+        .btn-print:hover { background: #e2e8f0; }
+
+        .btn-call { background: var(--brand-primary); color: var(--white); }
+        .btn-call:hover { background: var(--brand-dark); }
+
+        .page-container {
+            max-width: 920px;
+            margin: 24px auto;
+            padding: 0 12px;
+        }
+
+        .document-paper {
+            background: var(--white);
+            border-radius: 16px;
+            box-shadow: 0 10px 25px -5px rgba(0,0,0,0.05), 0 8px 10px -6px rgba(0,0,0,0.01);
+            padding: 28px 32px;
+            border: 1px solid var(--border);
+        }
+
+        .modern-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid var(--brand-light);
+            padding-bottom: 16px;
+            margin-bottom: 18px;
+            gap: 20px;
+        }
+
+        .brand-col {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .company-logo {
+            width: 72px;
+            height: 72px;
+            object-fit: contain;
+        }
+
+        .company-meta h1 {
+            font-size: 1.12rem;
+            font-weight: 800;
+            color: var(--brand-dark);
+            letter-spacing: -0.2px;
+            margin-bottom: 3px;
+        }
+
+        .company-meta p {
+            font-size: 0.78rem;
+            color: var(--slate-600);
+            line-height: 1.4;
+        }
+
+        .header-contact-card {
+            background: var(--brand-light);
+            border: 1px solid #a7f3d0;
+            padding: 10px 14px;
+            border-radius: 10px;
+            text-align: center;
+            min-width: 220px;
+        }
+
+        .header-contact-card .contact-label {
+            font-size: 0.75rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            color: var(--brand-dark);
+            letter-spacing: 0.5px;
+            text-align: center;
+            margin-bottom: 2px;
+        }
+
+        .header-contact-card .contact-phone {
+            font-size: 0.95rem;
+            font-weight: 800;
+            color: var(--brand-primary);
+            margin: 2px 0;
+            text-align: center;
+        }
+
+        .header-contact-card .contact-web {
+            font-size: 0.78rem;
+            color: var(--slate-600);
+            text-align: center;
+        }
+
+        .quote-banner {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            background: var(--slate-50);
+            border: 1px solid var(--border);
+            padding: 14px 18px;
+            border-radius: 12px;
+            margin-bottom: 16px;
+        }
+
+        .quote-title-block {
+            text-align: center;
+        }
+
+        .quote-title-block h2 {
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: var(--slate-900);
+            text-transform: uppercase;
+            margin-bottom: 4px;
+            text-align: center;
+        }
+
+        .quote-title-block .sub-spec {
+            font-size: 0.74rem;
+            font-weight: 700;
+            color: var(--brand-primary);
+            letter-spacing: 0.2px;
+            text-align: center;
+        }
+
+        .quote-meta-pill {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 16px;
+            border-top: 1px dashed var(--slate-200);
+            padding-top: 8px;
+            margin-top: 2px;
+            font-size: 0.78rem;
+            color: var(--slate-600);
+            text-align: left;
+        }
+
+        .quote-meta-pill > div {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .client-card {
+            display: flex;
+            align-items: baseline;
+            gap: 10px;
+            padding: 10px 14px;
+            background: var(--brand-light);
+            border-left: 4px solid var(--brand-primary);
+            border-radius: 4px;
+            margin-bottom: 14px;
+            text-align: left;
+        }
+
+        .client-card .tag { font-size: 0.85rem; font-weight: 700; color: var(--brand-dark); }
+        .client-card .name { font-size: 0.98rem; font-weight: 800; color: var(--slate-900); }
+
+        .section-bar {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.88rem;
+            font-weight: 800;
+            color: var(--brand-dark);
+            text-transform: uppercase;
+            margin: 16px 0 6px 0;
+            text-align: left;
+        }
+
+        .section-bar::after {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background: var(--slate-200);
+        }
+
+        .section-note {
+            font-size: 0.79rem;
+            color: var(--slate-600);
+            margin-bottom: 10px;
+            line-height: 1.45;
+            font-style: italic;
+        }
+
+        .table-container {
+            width: 100%;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            overflow: hidden;
+            margin-bottom: 14px;
+        }
+
+        table.flat-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.82rem;
+            table-layout: fixed;
+        }
+
+        table.flat-table thead {
+            background: var(--slate-100);
+        }
+
+        table.flat-table th {
+            padding: 9px 6px;
+            color: var(--slate-700);
+            font-weight: 700;
+            text-align: center !important;
+            vertical-align: middle;
+            border-bottom: 1px solid var(--border);
+            line-height: 1.3;
+        }
+
+        table.flat-table th .en-sub {
+            display: block;
+            font-size: 0.7rem;
+            font-weight: 500;
+            color: var(--slate-500);
+        }
+
+        table.flat-table td {
+            padding: 9px 8px;
+            border-bottom: 1px solid var(--slate-100);
+            color: var(--slate-700);
+            vertical-align: middle;
+            text-align: center;
+        }
+
+        table.flat-table td.col-desc {
+            text-align: left;
+            padding-left: 12px;
+        }
+
+        table.flat-table td.col-price,
+        table.flat-table td.col-amount {
+            text-align: right;
+            padding-right: 12px;
+        }
+
+        table.flat-table tbody tr:hover {
+            background: #fdfdfd;
+        }
+
+        .prod-name { font-weight: 700; color: var(--slate-900); }
+        .prod-sub { font-size: 0.76rem; color: var(--slate-500); margin-top: 2px; }
+        .price-text { font-weight: 600; white-space: nowrap; }
+        .amount-text { font-weight: 800; color: var(--brand-primary); white-space: nowrap; }
+
+        .bottom-grid {
+            display: grid;
+            grid-template-columns: 1.25fr 1fr;
+            gap: 14px;
+            margin-top: 14px;
+            align-items: stretch;
+        }
+
+        .terms-box {
+            background: var(--slate-50);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 12px 14px;
+            font-size: 0.78rem;
+            text-align: left;
+        }
+
+        .terms-box h4 {
+            font-size: 0.8rem;
+            font-weight: 800;
+            color: var(--slate-900);
+            margin-bottom: 6px;
+            text-transform: uppercase;
+        }
+
+        .terms-box ul {
+            padding-left: 16px;
+            color: var(--slate-600);
+            line-height: 1.45;
+        }
+
+        .grand-card {
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            border: 1.5px solid #86efac;
+            border-radius: 10px;
+            padding: 16px 14px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .grand-card .card-head {
+            font-size: 0.84rem;
+            font-weight: 800;
+            color: var(--brand-dark);
+            text-transform: uppercase;
+            text-align: center;
+            width: 100%;
+        }
+
+        .grand-card .card-val {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: #047857;
+            margin: 6px 0;
+            text-align: center;
+            width: 100%;
+        }
+
+        .grand-card .card-words {
+            font-size: 0.78rem;
+            color: var(--slate-700);
+            border-top: 1px dashed #86efac;
+            padding-top: 8px;
+            line-height: 1.4;
+            text-align: center;
+            width: 100%;
+        }
+
+        .signature-grid {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 16px;
+            padding-top: 10px;
+            table-layout: fixed;
+            page-break-inside: avoid;
+        }
+
+        .signature-grid td {
+            width: 50%;
+            vertical-align: top;
+            text-align: center;
+            padding: 0 10px;
+        }
+
+        .sign-title { font-size: 0.86rem; font-weight: 700; color: var(--slate-800); margin-bottom: 4px; }
+        .order-qty-pill {
+            font-size: 0.84rem;
+            font-weight: 700;
+            color: var(--slate-800);
+        }
+
+        .order-input-chip {
+            display: inline-block;
+            background: #fff;
+            border: 1.5px dashed #059669;
+            padding: 2px 10px;
+            border-radius: 4px;
+            color: #b91c1c;
+            font-weight: 800;
+            min-width: 42px;
+            cursor: text;
+        }
+
+        /* Khoảng trống ký tên tương đương 3 dòng */
+        .sign-spacing { height: 95px; }
+        .sign-name { font-size: 0.96rem; font-weight: 800; color: var(--brand-dark); }
+        .sign-contact { font-size: 0.82rem; font-weight: 600; color: var(--slate-600); }
+
+        .page-break-before {
+            page-break-before: always;
+            break-before: page;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            margin-top: 8px;
+            text-align: left;
+        }
+
+        .feature-item {
+            background: var(--slate-50);
+            border: 1px solid var(--border);
+            padding: 8px 10px;
+            border-radius: 8px;
+            font-size: 0.78rem;
+            color: var(--slate-700);
+        }
+
+        .feature-item strong { color: var(--slate-900); display: block; margin-bottom: 2px; }
+
+        .attachment-wrap {
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        .attachment-view-box {
+            display: none;
+            margin-top: 10px;
+            flex-direction: column;
+            gap: 14px;
+            align-items: center;
+        }
+
+        .attachment-view-box.show { display: flex; }
+
+        .attachment-view-box img {
+            max-width: 100%;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+        }
+
+        .editable-field { outline: none; border-radius: 3px; }
+        .always-editable {
+            background-color: #fffbeb;
+            border: 1px dashed #f59e0b;
+            padding: 1px 4px;
+            cursor: text;
+        }
+
+        body.admin-mode .editable-field {
+            background-color: #f0fdf4 !important;
+            border: 1.5px dashed #059669 !important;
+            color: #047857 !important;
+            padding: 1px 6px;
+            cursor: text;
+        }
+
+        .admin-alert {
+            display: none;
+            background: var(--brand-light);
+            border: 1px solid #a7f3d0;
+            padding: 8px 12px;
+            border-radius: 8px;
+            margin-bottom: 14px;
+            font-size: 0.82rem;
+            color: var(--brand-dark);
+            justify-content: space-between;
+            align-items: center;
+        }
+        .admin-alert.active { display: flex; }
+
+        .modal-bg {
+            display: none;
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(4px);
+            z-index: 999;
+            align-items: center; justify-content: center;
+            padding: 16px;
+        }
+        .modal-bg.open { display: flex; }
+
+        .modal-box {
+            background: var(--white);
+            border-radius: 12px; padding: 24px;
+            width: 100%; max-width: 360px;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+
+        .modal-box input {
+            width: 100%; padding: 9px 12px;
+            border: 1px solid var(--border); border-radius: 6px;
+            font-size: 0.95rem; text-align: center;
+            margin-bottom: 12px; outline: none;
+        }
+        .modal-err { color: #dc2626; font-size: 0.75rem; margin-top: -8px; margin-bottom: 10px; display: none; }
+
+        @media print {
+            @page { size: A4 portrait; margin: 6mm 8mm; }
+            body { background: white; padding: 0; font-size: 10px; }
+            .app-bar, .admin-alert, .modal-bg, .attachment-toggle-btn { display: none !important; }
+            .page-container { max-width: 100%; margin: 0; padding: 0; }
+            .document-paper { border: none; box-shadow: none; padding: 0; }
+            .always-editable, .order-input-chip { background: transparent !important; border: none !important; padding: 0 !important; color: inherit !important; }
+            body.admin-mode .editable-field { background: transparent !important; border: none !important; padding: 0 !important; color: inherit !important; }
+
+            .modern-header { border-bottom: 1.5px solid var(--brand-primary) !important; padding-bottom: 6px; margin-bottom: 8px; }
+            .header-contact-card { border: 1px solid var(--border); background: transparent !important; padding: 4px 8px; }
+            .quote-banner { background: transparent !important; border: 1px solid var(--border) !important; padding: 6px 10px; margin-bottom: 8px; }
+            .client-card { background: transparent !important; border-left: 3px solid var(--brand-primary) !important; padding: 3px 6px; margin-bottom: 6px; }
+
+            .bottom-grid { gap: 8px; margin-top: 8px; }
+            .terms-box { background: transparent !important; padding: 6px 8px; font-size: 0.72rem; }
+            .grand-card { background: transparent !important; border: 1.5px solid #047857 !important; padding: 6px 8px; }
+            .grand-card .card-val { font-size: 1.15rem; }
+
+            .feature-grid { gap: 4px; }
+            .feature-item { background: transparent !important; padding: 4px 6px; font-size: 0.72rem; }
+
+            .table-container { margin-bottom: 8px; }
+            table.flat-table th, table.flat-table td { padding: 4px 5px; font-size: 0.74rem; }
+
+            .signature-grid { margin-top: 8px; }
+            .sign-spacing { height: 75px; }
+
+            .attachment-view-box { display: flex !important; gap: 8px; }
+            .attachment-view-box img {
+                max-width: 100% !important;
+                max-height: 96vh !important;
+                object-fit: contain;
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- TOP ACTION BAR -->
+    <div class="app-bar">
+        <div class="app-bar-inner">
+            <div class="app-bar-brand">
+                <i class="fa-solid fa-satellite-dish" style="color: var(--brand-primary);"></i> GPS Khánh Hòa Portal
+            </div>
+            <div class="app-bar-actions">
+                <button id="adminBtn" class="btn btn-nvkd" onclick="handleLockToggle()">
+                    <i class="fa-solid fa-lock" id="adminBtnIcon"></i> <span id="adminBtnText">NVKD</span>
+                </button>
+                <button class="btn btn-print" onclick="window.print()">
+                    <i class="fa-solid fa-print"></i> In / Xuất PDF
+                </button>
+                <a id="topCallBtn" href="tel:0569058058" class="btn btn-call">
+                    <i class="fa-solid fa-phone"></i> 0569.058.058
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="page-container">
+        <div class="document-paper">
+
+            <!-- Alert NVKD -->
+            <div class="admin-alert" id="adminAlert">
+                <div><strong><i class="fa-solid fa-user-pen"></i> Chế độ nhân viên:</strong> Đã mở khóa các trường thông tin cần chỉnh sửa.</div>
+                <button class="btn btn-print" style="padding: 2px 8px; font-size: 0.74rem;" onclick="lockAdmin()">Đóng khóa</button>
+            </div>
+
+            <!-- HEADER -->
+            <div class="modern-header">
+                <div class="brand-col">
+                    <img src="https://raw.githubusercontent.com/canhntnear/BaogiaGPS/main/logogpskh.png" alt="Logo GPS Khánh Hòa" class="company-logo" onerror="this.src='https://github.com/canhntnear/BaogiaGPS/raw/main/logogpskh.png'">
+                    <div class="company-meta">
+                        <h1>HỘ KINH DOANH GPS KHÁNH HÒA</h1>
+                        <p>Mã số HKD: <strong>058195000148</strong>[cite: 1]</p>
+                        <p><i class="fa-solid fa-location-dot" style="color: var(--brand-primary);"></i> Thôn Suối Đá, Xã Thuận Bắc, Tỉnh Khánh Hòa[cite: 1]</p>
+                    </div>
+                </div>
+                <div class="header-contact-card">
+                    <div class="contact-label">THÔNG TIN LIÊN HỆ</div>
+                    <div class="contact-phone" id="headerPhone" class="editable-field" contenteditable="false" onblur="syncInfo('phone', this.innerText)">0569058058 - 0825431234[cite: 1]</div>
+                    <div class="contact-web">
+                        <strong>gpskhanhhoa.vn</strong>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BANNER BÁO GIÁ CĂN GIỮA TIÊU ĐỀ -->
+            <div class="quote-banner">
+                <div class="quote-title-block">
+                    <h2>BẢNG BÁO GIÁ THIẾT BỊ & DỊCH VỤ</h2>
+                    <div class="sub-spec">
+                        GSHT &bull; CAMERA GHI NHẬN HÌNH ẢNH NGƯỜI LÁI XE &bull; GIÁM SÁT KHOANG HÀNH KHÁCH
+                    </div>
+                </div>
+                <div class="quote-meta-pill">
+                    <div>Mã: <strong class="always-editable" id="docCode" contenteditable="true">BG-GPSKH/2026-1809</strong></div>
+                    <div>Ngày lập: <strong class="always-editable" id="docDateText" contenteditable="true" onblur="handleDateChange(this.innerText)">18/09/2026</strong></div>
+                    <div>Hiệu lực báo giá: <strong id="validUntilText" style="color: var(--brand-dark);">Đến hết ngày 08/10/2026</strong></div>
+                </div>
+            </div>
+
+            <!-- Khách hàng -->
+            <div class="client-card">
+                <span class="tag">Kính gửi:</span>
+                <span class="name always-editable" id="customerName" contenteditable="true">Quý Khách hàng / Đơn vị vận tải</span>
+            </div>
+
+            <!-- BẢNG 1: THIẾT BỊ KHỞI TẠO -->
+            <div class="section-bar">
+                <i class="fa-solid fa-cube"></i> I. Thiết bị phần cứng & Phụ kiện ban đầu
+            </div>
+            <div class="table-container">
+                <table class="flat-table">
+                    <colgroup>
+                        <col style="width: 8%;">
+                        <col style="width: 48%;">
+                        <col style="width: 10%;">
+                        <col style="width: 10%;">
+                        <col style="width: 12%;">
+                        <col style="width: 12%;">
+                    </colgroup>
+                    <thead>
+                        <tr>
+                            <th>STT<span class="en-sub">(No)</span></th>
+                            <th>Tên hàng hóa, dịch vụ<span class="en-sub">(Name of goods and services)</span></th>
+                            <th>ĐVT<span class="en-sub">(Unit)</span></th>
+                            <th>SL<span class="en-sub">(Quantity)</span></th>
+                            <th>Đơn giá<span class="en-sub">(Unit Price)</span></th>
+                            <th>Thành tiền<span class="en-sub">(Amount)</span></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="font-weight: 700;">01</td>
+                            <td class="col-desc">
+                                <div class="prod-name">Thiết bị giám sát hành trình 3T02-S</div>
+                                <div class="prod-sub">Chứng nhận QCVN 06:2024/BCA &bull; Số: 26.21.01/CNSP - A0598050826BE21A5</div>
+                            </td>
+                            <td>Bộ</td>
+                            <td style="font-weight: 700;">
+                                <span id="tableQty" class="always-editable" contenteditable="true" oninput="handleQtyChange(this)" onblur="formatQtyDisplay(this)">01</span>
+                            </td>
+                            <td class="col-price price-text">
+                                <span id="hardwarePrice" class="always-editable" contenteditable="true" onblur="handleHardwarePrice(this)">950,000</span>
+                            </td>
+                            <td class="col-amount amount-text" id="row1Total">950,000</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- BẢNG 2: PHÍ DUY TRÌ -->
+            <div class="section-bar">
+                <i class="fa-solid fa-arrows-spin"></i> II. Phí sử dụng phần mềm quản trị & Các chi phí khác: Áp dụng từ năm thứ 2
+            </div>
+            <p class="section-note">
+                (Sau 01 năm sử dụng gói dịch vụ khởi tạo ban đầu, căn cứ nhu cầu thực tế, Quý khách hàng thực hiện đóng phí duy trì dịch vụ định kỳ theo đơn giá quy định cho từng phương tiện/thiết bị chi tiết như bảng dưới)
+            </p>
+            <div class="table-container">
+                <table class="flat-table">
+                    <colgroup>
+                        <col style="width: 8%;">
+                        <col style="width: 48%;">
+                        <col style="width: 10%;">
+                        <col style="width: 10%;">
+                        <col style="width: 12%;">
+                        <col style="width: 12%;">
+                    </colgroup>
+                    <thead>
+                        <tr>
+                            <th>STT<span class="en-sub">(No)</span></th>
+                            <th>Tên hàng hóa, dịch vụ<span class="en-sub">(Name of goods and services)</span></th>
+                            <th>ĐVT<span class="en-sub">(Unit)</span></th>
+                            <th>SL<span class="en-sub">(Quantity)</span></th>
+                            <th>Đơn giá<span class="en-sub">(Unit Price)</span></th>
+                            <th>Thành tiền<span class="en-sub">(Amount)</span></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="font-weight: 700;">01</td>
+                            <td class="col-desc">
+                                <div class="prod-name">Phí dịch vụ phần mềm giám sát hành trình ( Thời hạn: 12 tháng )</div>
+                                <div class="prod-sub">Đơn giá áp dụng duy trì dịch vụ viễn thông & hệ thống cho từng 01 phương tiện/năm</div>
+                            </td>
+                            <td>Gói/Xe</td>
+                            <td style="font-weight: 700;">1</td>
+                            <td class="col-price price-text">
+                                <span id="softwarePrice">880,000</span>
+                            </td>
+                            <td class="col-amount amount-text" style="color: var(--slate-800);" id="softTotal">880,000</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- GRID TỔNG TIỀN VÀ ĐIỀU KHOẢN -->
+            <div class="bottom-grid">
+                <div class="terms-box">
+                    <h4><i class="fa-solid fa-shield-check" style="color: var(--brand-primary);"></i> Điều khoản & Chính sách cam kết</h4>
+                    <ul>
+                        <li><strong>Trọn gói ban đầu:</strong> Thiết bị, Sim 4G viễn thông (12 tháng), Phần mềm quản trị (12 tháng).</li>
+                        <li><strong>Chính sách hậu mãi GPS Care:</strong> Hỗ trợ kỹ thuật 24/7, kiểm tra bảo dưỡng định kỳ và bảo hành phần cứng tiêu chuẩn 24 tháng.</li>
+                        <li><strong>Triển khai nhanh:</strong> Lắp đặt trong vòng 24h - 48h tại Khánh Hòa và khu vực lân cận.</li>
+                        <li><strong>Chứng từ:</strong> Hóa đơn bán hàng trực tiếp và biên bản bàn giao đầy đủ.</li>
+                    </ul>
+                </div>
+
+                <!-- Khối Tổng dự toán căn giữa -->
+                <div class="grand-card">
+                    <div class="card-head" id="grandTotalLabel">Tổng dự toán (01 Bộ thiết bị):</div>
+                    <div class="card-val" id="grandTotalText">950.000 VNĐ</div>
+                    <div class="card-words">
+                        <strong>Bằng chữ:</strong> <br><span id="grandTotalWords" style="font-style: italic; font-weight: 600;">Chín trăm năm mươi nghìn đồng chẵn.</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BẢNG KÝ TÊN VỚI KHOẢNG CÁCH 3 DÒNG -->
+            <table class="signature-grid">
+                <tr>
+                    <td>
+                        <div class="sign-title">ĐẠI DIỆN KHÁCH HÀNG</div>
+                        <div class="order-qty-pill">
+                            Đặt mua: <span id="orderQty" class="order-input-chip" contenteditable="true" oninput="handleQtyChange(this)" onblur="formatQtyDisplay(this)">01</span> Bộ thiết bị
+                        </div>
+                        <div class="sign-spacing"></div>
+                    </td>
+                    <td>
+                        <div class="sign-title">ĐẠI DIỆN ĐƠN VỊ CUNG ỨNG</div>
+                        <div class="sign-spacing"></div>
+                        <div class="sign-name">
+                            <span id="signName" class="editable-field" contenteditable="false" onblur="syncInfo('name', this.innerText)">Đỗ Hồng Trúc Loan</span>[cite: 1]
+                        </div>
+                        <div class="sign-contact">
+                            <span id="signPhone" class="editable-field" contenteditable="false" onblur="syncInfo('phone', this.innerText)">0569058058 - 0825431234</span>[cite: 1]
+                        </div>
+                    </td>
+                </tr>
+            </table>
+
+            <div class="page-break-before"></div>
+
+            <!-- TÍNH NĂNG KỸ THUẬT -->
+            <div class="section-bar" style="margin-top: 0;">
+                <i class="fa-solid fa-sliders"></i> III. Đặc tính kỹ thuật & Khả năng đáp ứng hệ thống
+            </div>
+
+            <div class="feature-grid">
+                <div class="feature-item">
+                    <strong><i class="fa-solid fa-check" style="color: var(--brand-primary);"></i> Chuẩn QCVN 06:2024/BCA</strong>
+                    Hợp quy Bộ Công An, đầy đủ chứng thư kiểm chuẩn truyền nhận và an toàn dữ liệu giám sát hành trình.
+                </div>
+                <div class="feature-item">
+                    <strong><i class="fa-solid fa-check" style="color: var(--brand-primary);"></i> Chế độ hậu mãi GPS Care</strong>
+                    Chăm sóc kỹ thuật 24/7 tận xe, tiếp nhận hỗ trợ từ xa và bảo hành phần cứng 1 đổi 1 trong 24 tháng.
+                </div>
+                <div class="feature-item">
+                    <strong><i class="fa-solid fa-check" style="color: var(--brand-primary);"></i> Bảo vệ ắc quy phương tiện</strong>
+                    Cơ chế cảm biến điện áp thông minh, tự động chuyển về trạng thái Deep-sleep khi xe dừng đỗ dài ngày.
+                </div>
+                <div class="feature-item">
+                    <strong><i class="fa-solid fa-check" style="color: var(--brand-primary);"></i> Mở rộng cảm biến chuyên sâu</strong>
+                    Sẵn sàng kết nối cảm biến đo mức tiêu hao nhiên liệu chính xác 98% và cảm biến nhiệt thùng đông lạnh.
+                </div>
+            </div>
+
+            <!-- TÀI LIỆU ĐÍNH KÈM -->
+            <div class="section-bar">
+                <i class="fa-solid fa-paperclip"></i> IV. Hồ sơ chứng nhận chất lượng đính kèm
+            </div>
+
+            <div class="attachment-wrap">
+                <button class="btn btn-print attachment-toggle-btn" onclick="toggleAttachment()">
+                    <i class="fa-solid fa-file-shield" id="toggleIcon" style="color: var(--brand-primary);"></i> 
+                    <span id="toggleText">Mở xem chứng nhận kiểm định QCVN 06 (2 Bản scan)</span>
+                </button>
+
+                <div class="attachment-view-box" id="attachmentBox">
+                    <img src="https://raw.githubusercontent.com/canhntnear/BaogiaGPS/main/HQ02S.jpg" alt="Chứng nhận hợp quy 3T02-S Bản 1">
+                    <img src="https://raw.githubusercontent.com/canhntnear/BaogiaGPS/main/HC02-S.jpg" alt="Chứng nhận hợp chuẩn 3T02-S Bản 2">
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- MODAL NHẬP MẬT KHẨU -->
+    <div class="modal-bg" id="passModal">
+        <div class="modal-box">
+            <h3 style="font-size: 1.05rem; margin-bottom: 6px; color: var(--slate-900);">Mở khóa cấu hình</h3>
+            <p style="font-size: 0.8rem; color: var(--slate-500); margin-bottom: 12px;">Nhập mã PIN nhân viên để kích hoạt chế độ chỉnh sửa.</p>
+            <input type="password" id="passInput" placeholder="Mã PIN bảo mật" onkeydown="if(event.key==='Enter') checkPass()">
+            <div class="modal-err" id="passErr">Mã truy cập không hợp lệ!</div>
+            <div style="display: flex; gap: 8px;">
+                <button class="btn btn-print" style="flex: 1;" onclick="closePassModal()">Hủy</button>
+                <button class="btn btn-call" style="flex: 1;" onclick="checkPass()">Xác thực</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let unitPrice = 950000;
+        let currentQty = 1;
+        const softwarePrice = 880000;
+        let isAdmin = false;
+        const PASS_LIST = ["0569058058", "0825431234", "058195000148", "123456"];[cite: 1]
+
+        function formatNum(num) {
+            return new Intl.NumberFormat('vi-VN').format(Math.round(num));
+        }
+
+        function cleanNum(str) {
+            return parseInt(str.replace(/[^\d]/g, '')) || 0;
+        }
+
+        function padTwo(num) {
+            return num < 10 ? '0' + num : num.toString();
+        }
+
+        function docSoTien(so) {
+            if (so === 0) return "Không đồng";
+            const ChuSo = [" không", " một", " hai", " ba", " bốn", " năm", " sáu", " bảy", " tám", " chín"];
+            const Tien = ["", " nghìn", " triệu", " tỷ", " nghìn tỷ", " triệu tỷ"];
+
+            function docSo3ChuSo(baso) {
+                let tram = Math.floor(baso / 100);
+                let chuc = Math.floor((baso % 100) / 10);
+                let donvi = baso % 10;
+                let ketQua = "";
+                if (tram === 0 && chuc === 0 && donvi === 0) return "";
+                if (tram !== 0) {
+                    ketQua += ChuSo[tram] + " trăm";
+                    if (chuc === 0 && donvi !== 0) ketQua += " lẻ";
+                }
+                if (chuc !== 0 && chuc !== 1) {
+                    ketQua += ChuSo[chuc] + " mươi";
+                    if (chuc === 0 && donvi !== 0) ketQua += " linh";
+                }
+                if (chuc === 1) ketQua += " mười";
+                switch (donvi) {
+                    case 1:
+                        if (chuc !== 0 && chuc !== 1) ketQua += " mốt";
+                        else ketQua += ChuSo[donvi];
+                        break;
+                    case 5:
+                        if (chuc === 0) ketQua += ChuSo[donvi];
+                        else ketQua += " lăm";
+                        break;
+                    default:
+                        if (donvi !== 0) ketQua += ChuSo[donvi];
+                        break;
+                }
+                return ketQua;
+            }
+
+            let lan = 0, i = 0, tongSo = Math.round(so), mangSo = [], chuoi = "";
+            if (tongSo < 0) return "Số tiền âm";
+
+            while (tongSo > 0) {
+                mangSo[lan] = tongSo % 1000;
+                tongSo = Math.floor(tongSo / 1000);
+                lan++;
+            }
+
+            for (i = lan - 1; i >= 0; i--) {
+                let doc = docSo3ChuSo(mangSo[i]);
+                if (doc !== "") chuoi += doc + Tien[i];
+            }
+
+            chuoi = chuoi.trim();
+            if (chuoi.length > 0) {
+                chuoi = chuoi.charAt(0).toUpperCase() + chuoi.slice(1) + " đồng chẵn.";
+            }
+            return chuoi;
+        }
+
+        function updateValidityDate(baseDate) {
+            const validDate = new Date(baseDate);
+            validDate.setDate(validDate.getDate() + 20);
+            const vDay = padTwo(validDate.getDate());
+            const vMonth = padTwo(validDate.getMonth() + 1);
+            const vYear = validDate.getFullYear();
+            document.getElementById('validUntilText').innerText = `Đến hết ngày ${vDay}/${vMonth}/${vYear}`;
+        }
+
+        function handleDateChange(val) {
+            const parts = val.trim().split('/');
+            if (parts.length === 3) {
+                const day = parseInt(parts[0], 10);
+                const month = parseInt(parts[1], 10) - 1;
+                const year = parseInt(parts[2], 10);
+                const inputDate = new Date(year, month, day);
+                if (!isNaN(inputDate.getTime())) {
+                    updateValidityDate(inputDate);
+                    document.getElementById('docCode').innerText = `BG-GPSKH/${year}-${padTwo(day)}${padTwo(month + 1)}`;
+                }
+            }
+        }
+
+        function calcTotal() {
+            const grandTotal = currentQty * unitPrice;
+            const qtyFormatted = padTwo(currentQty);
+
+            document.getElementById('row1Total').innerText = formatNum(grandTotal);
+            document.getElementById('grandTotalText').innerText = formatNum(grandTotal) + ' VNĐ';
+
+            document.getElementById('grandTotalLabel').innerText = `Tổng dự toán (${qtyFormatted} Bộ thiết bị):`;
+            document.getElementById('grandTotalWords').innerText = docSoTien(grandTotal);
+            document.getElementById('softTotal').innerText = formatNum(softwarePrice);
+        }
+
+        function handleHardwarePrice(el) {
+            let val = cleanNum(el.innerText);
+            if (val <= 0) val = 950000;
+            unitPrice = val;
+            el.innerText = formatNum(unitPrice);
+            calcTotal();
+        }
+
+        function handleQtyChange(el) {
+            let val = cleanNum(el.innerText);
+            if (val <= 0) val = 1;
+            currentQty = val;
+
+            const tableQtyEl = document.getElementById('tableQty');
+            const orderQtyEl = document.getElementById('orderQty');
+
+            if (el !== tableQtyEl && tableQtyEl) {
+                tableQtyEl.innerText = padTwo(currentQty);
+            }
+            if (el !== orderQtyEl && orderQtyEl) {
+                orderQtyEl.innerText = padTwo(currentQty);
+            }
+
+            calcTotal();
+        }
+
+        function formatQtyDisplay(el) {
+            let val = cleanNum(el.innerText);
+            if (val <= 0) val = 1;
+            currentQty = val;
+            document.getElementById('tableQty').innerText = padTwo(currentQty);
+            document.getElementById('orderQty').innerText = padTwo(currentQty);
+            calcTotal();
+        }
+
+        function syncInfo(type, val) {
+            let clean = val.trim();
+            if (type === 'name') {
+                document.getElementById('signName').innerText = clean;
+            } else if (type === 'phone') {
+                document.getElementById('headerPhone').innerText = clean;
+                document.getElementById('signPhone').innerText = clean;
+                const matches = clean.match(/\d{10,11}/);
+                if (matches && matches[0]) {
+                    document.getElementById('topCallBtn').href = 'tel:' + matches[0];
+                }
+            }
+        }
+
+        function toggleAttachment() {
+            const box = document.getElementById('attachmentBox');
+            const text = document.getElementById('toggleText');
+            if (box.classList.contains('show')) {
+                box.classList.remove('show');
+                text.innerText = "Mở xem chứng nhận kiểm định QCVN 06 (2 Bản scan)";
+            } else {
+                box.classList.add('show');
+                text.innerText = "Thu nhỏ tài liệu chứng nhận";
+            }
+        }
+
+        function handleLockToggle() {
+            if (isAdmin) {
+                lockAdmin();
+            } else {
+                openPassModal();
+            }
+        }
+
+        function openPassModal() {
+            document.getElementById('passInput').value = '';
+            document.getElementById('passErr').style.display = 'none';
+            document.getElementById('passModal').classList.add('open');
+            setTimeout(() => document.getElementById('passInput').focus(), 120);
+        }
+
+        function closePassModal() {
+            document.getElementById('passModal').classList.remove('open');
+        }
+
+        function checkPass() {
+            let p = document.getElementById('passInput').value.trim();
+            if (PASS_LIST.includes(p)) {
+                isAdmin = true;
+                closePassModal();
+                setAdmin(true);
+            } else {
+                document.getElementById('passErr').style.display = 'block';
+            }
+        }
+
+        function lockAdmin() {
+            isAdmin = false;
+            setAdmin(false);
+        }
+
+        function setAdmin(active) {
+            const body = document.body;
+            const btnText = document.getElementById('adminBtnText');
+            const btnIcon = document.getElementById('adminBtnIcon');
+            const alert = document.getElementById('adminAlert');
+            const editables = document.querySelectorAll('.editable-field');
+
+            if (active) {
+                body.classList.add('admin-mode');
+                btnText.innerText = 'Khóa lại';
+                btnIcon.className = 'fa-solid fa-lock-open';
+                alert.classList.add('active');
+                editables.forEach(e => e.setAttribute('contenteditable', 'true'));
+            } else {
+                body.classList.remove('admin-mode');
+                btnText.innerText = 'NVKD';
+                btnIcon.className = 'fa-solid fa-lock';
+                alert.classList.remove('active');
+                editables.forEach(e => e.setAttribute('contenteditable', 'false'));
+            }
+        }
+
+        calcTotal();
+    </script>
+</body>
+</html>
