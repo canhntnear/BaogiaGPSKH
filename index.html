@@ -13,11 +13,11 @@
             --brand-primary: #047857;
             --brand-dark: #064e3b;
             --brand-light: #ecfdf5;
-            --brand-accent: #059669;
             --slate-900: #0f172a;
             --slate-800: #1e293b;
             --slate-700: #334155;
             --slate-600: #475569;
+            --slate-500: #64748b;
             --slate-200: #e2e8f0;
             --slate-100: #f1f5f9;
             --slate-50: #f8fafc;
@@ -107,7 +107,7 @@
         .document-paper {
             background: var(--white);
             border-radius: 16px;
-            box-shadow: 0 10px 25px -5px rgba(0,0,0,0.05), 0 8px 10px -6px rgba(0,0,0,0.01);
+            box-shadow: 0 10px 25px -5px rgba(0,0,0,0.05);
             padding: 28px 32px;
             border: 1px solid var(--border);
         }
@@ -163,7 +163,6 @@
             text-transform: uppercase;
             color: var(--brand-dark);
             letter-spacing: 0.5px;
-            text-align: center;
             margin-bottom: 2px;
         }
 
@@ -172,13 +171,11 @@
             font-weight: 800;
             color: var(--brand-primary);
             margin: 2px 0;
-            text-align: center;
         }
 
         .header-contact-card .contact-web {
             font-size: 0.78rem;
             color: var(--slate-600);
-            text-align: center;
         }
 
         .quote-banner {
@@ -202,7 +199,6 @@
             color: var(--slate-900);
             text-transform: uppercase;
             margin-bottom: 4px;
-            text-align: center;
         }
 
         .quote-title-block .sub-spec {
@@ -210,7 +206,6 @@
             font-weight: 700;
             color: var(--brand-primary);
             letter-spacing: 0.2px;
-            text-align: center;
         }
 
         .quote-meta-pill {
@@ -386,7 +381,6 @@
             font-weight: 800;
             color: var(--brand-dark);
             text-transform: uppercase;
-            text-align: center;
             width: 100%;
         }
 
@@ -395,7 +389,6 @@
             font-weight: 800;
             color: #047857;
             margin: 6px 0;
-            text-align: center;
             width: 100%;
         }
 
@@ -405,7 +398,6 @@
             border-top: 1px dashed #86efac;
             padding-top: 8px;
             line-height: 1.4;
-            text-align: center;
             width: 100%;
         }
 
@@ -625,13 +617,13 @@
                     <img src="https://raw.githubusercontent.com/canhntnear/BaogiaGPS/main/logogpskh.png" alt="Logo GPS Khánh Hòa" class="company-logo" onerror="this.src='https://github.com/canhntnear/BaogiaGPS/raw/main/logogpskh.png'">
                     <div class="company-meta">
                         <h1>HỘ KINH DOANH GPS KHÁNH HÒA</h1>
-                        <p>Mã số HKD: <strong>058195000148</strong>[cite: 1]</p>
-                        <p><i class="fa-solid fa-location-dot" style="color: var(--brand-primary);"></i> Thôn Suối Đá, Xã Thuận Bắc, Tỉnh Khánh Hòa[cite: 1]</p>
+                        <p>Mã số HKD: <strong>058195000148</strong></p>
+                        <p><i class="fa-solid fa-location-dot" style="color: var(--brand-primary);"></i> Thôn Suối Đá, Xã Thuận Bắc, Tỉnh Khánh Hòa</p>
                     </div>
                 </div>
                 <div class="header-contact-card">
                     <div class="contact-label">THÔNG TIN LIÊN HỆ</div>
-                    <div class="contact-phone" id="headerPhone" class="editable-field" contenteditable="false" onblur="syncInfo('phone', this.innerText)">0569058058 - 0825431234[cite: 1]</div>
+                    <div class="contact-phone" id="headerPhone" class="editable-field" contenteditable="false" onblur="syncInfo('phone', this.innerText)">0569058058 - 0825431234</div>
                     <div class="contact-web">
                         <strong>gpskhanhhoa.vn</strong>
                     </div>
@@ -770,7 +762,7 @@
                 </div>
             </div>
 
-            <!-- BẢNG KÝ TÊN VỚI KHOẢNG CÁCH 3 DÒNG -->
+            <!-- BẢNG KÝ TÊN -->
             <table class="signature-grid">
                 <tr>
                     <td>
@@ -784,10 +776,10 @@
                         <div class="sign-title">ĐẠI DIỆN ĐƠN VỊ CUNG ỨNG</div>
                         <div class="sign-spacing"></div>
                         <div class="sign-name">
-                            <span id="signName" class="editable-field" contenteditable="false" onblur="syncInfo('name', this.innerText)">Đỗ Hồng Trúc Loan</span>[cite: 1]
+                            <span id="signName" class="editable-field" contenteditable="false" onblur="syncInfo('name', this.innerText)">Đỗ Hồng Trúc Loan</span>
                         </div>
                         <div class="sign-contact">
-                            <span id="signPhone" class="editable-field" contenteditable="false" onblur="syncInfo('phone', this.innerText)">0569058058 - 0825431234</span>[cite: 1]
+                            <span id="signPhone" class="editable-field" contenteditable="false" onblur="syncInfo('phone', this.innerText)">0569058058 - 0825431234</span>
                         </div>
                     </td>
                 </tr>
@@ -865,7 +857,7 @@
         }
 
         function cleanNum(str) {
-            return parseInt(str.replace(/[^\d]/g, '')) || 0;
+            return parseInt(str.replace(/[^\d]/g, ''), 10) || 0;
         }
 
         function padTwo(num) {
@@ -958,7 +950,6 @@
 
             document.getElementById('row1Total').innerText = formatNum(grandTotal);
             document.getElementById('grandTotalText').innerText = formatNum(grandTotal) + ' VNĐ';
-
             document.getElementById('grandTotalLabel').innerText = `Tổng dự toán (${qtyFormatted} Bộ thiết bị):`;
             document.getElementById('grandTotalWords').innerText = docSoTien(grandTotal);
             document.getElementById('softTotal').innerText = formatNum(softwarePrice);
